@@ -16,7 +16,6 @@ const addToArray = (element, array) => {
 
 const addToArray2 = (element, array) => {
   return array.concat(element);
-  // const addToArrayCopy = array.concat(element);
 };
 
 function removeNthElement(index, array) {
@@ -56,21 +55,11 @@ const reverseWordsInArray = strings => {
 };
 
 const onlyEven = numbers => {
-  const even = [];
-
-  numbers.forEach(num => {
-    if (num % 2 === 0) {
-      even.push(num);
-    }
-  });
-  return even;
+  return numbers.filter(number => number % 2 === 0);
 };
 
 function removeNthElement2(index, array) {
-  const halfBefore = array.slice(0, index);
-  const halfAfter = array.slice(index + 1);
-  const elementRemove = halfBefore.concat(halfAfter);
-  return elementRemove;
+  return array.slice(0, index).concat(array.slice(index + 1));
 }
 
 function elementsStartingWithAVowel(strings) {
@@ -84,17 +73,11 @@ const removeSpaces = string => {
 };
 
 const sumNumbers = numbers => {
-  const startValue = 0;
-  const sumWithInitial = numbers.reduce(
-    (accumulator, currentValue) => accumulator + currentValue,
-    startValue,
-  );
-  return sumWithInitial;
+  return numbers.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
 };
 
 function sortByLastLetter(strings) {
-  const lastChar = strings.sort((a, b) => a.charCodeAt(a.length - 1) - b.charCodeAt(b.length - 1));
-  return lastChar;
+  return strings.sort((a, b) => a.charCodeAt(a.length - 1) - b.charCodeAt(b.length - 1));
 }
 
 module.exports = {

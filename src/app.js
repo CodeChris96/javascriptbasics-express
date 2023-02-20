@@ -1,6 +1,3 @@
-/* eslint-disable prefer-const */
-/* eslint-disable no-restricted-globals */
-/* eslint-disable consistent-return */
 const express = require('express');
 const {
   sayHello,
@@ -35,18 +32,14 @@ app.get('/strings/lower/:string', (req, res) => {
   res.status(200).json({ result: lowercase(req.params.string) });
 });
 
-// Define a route for getting the first character(s) of a string
 app.get('/strings/first-characters/:string', (req, res) => {
-  // Get the `length` query parameter
   const n = req.query.length;
-  // Get the `string` parameter from the URL
+
   const { string } = req.params;
 
-  // If the `length` parameter is not present, return the first character of the string
   if (!n) {
     return res.status(200).json({ result: firstCharacter(string) });
   }
-  // Otherwise, return the first `n` characters of the string
   return res.status(200).json({ result: firstCharacters(string, n) });
 });
 
@@ -54,22 +47,22 @@ app.get('/numbers/add/:a/and/:b', (req, res) => {
   const a = Number(req.params.a);
   const b = Number(req.params.b);
 
-  if (isNaN(a) || isNaN(b)) {
+  if (Number.isNaN(a) || Number.isNaN(b)) {
     return res.status(400).json({ error: 'Parameters must be valid numbers.' });
   }
 
-  res.status(200).json({ result: add(a, b) });
+  return res.status(200).json({ result: add(a, b) });
 });
 
 app.get('/numbers/subtract/:a/from/:b', (req, res) => {
   const a = Number(req.params.a);
   const b = Number(req.params.b);
 
-  if (isNaN(a) || isNaN(b)) {
+  if (Number.isNaN(a) || Number.isNaN(b)) {
     return res.status(400).json({ error: 'Parameters must be valid numbers.' });
   }
 
-  res.status(200).json({ result: subtract(b, a) });
+  return res.status(200).json({ result: subtract(b, a) });
 });
 
 app.post('/numbers/multiply', (req, res) => {
@@ -86,7 +79,7 @@ app.post('/numbers/multiply', (req, res) => {
     return res.status(400).json({ error: 'Parameters "a" and "b" must be valid numbers.' });
   }
 
-  res.status(200).json({ result: multiply(a, b) });
+  return res.status(200).json({ result: multiply(a, b) });
 });
 
 app.post('/numbers/divide', (req, res) => {
@@ -154,7 +147,7 @@ app.post('/arrays/starts-with-vowel', (req, res) => {
 });
 
 app.post('/arrays/remove-element', (req, res) => {
-  const index = req.query.index !== undefined ? parseInt(req.query.index) : 0;
+  const index = req.query.index !== undefined ? parseInt(req.query.index, 10) : 0;
   res.status(200).json({ result: removeNthElement2(index, req.body.array) });
 });
 
@@ -174,7 +167,7 @@ app.post('/booleans/truthiness', (req, res) => {
 });
 
 app.get('/booleans/is-odd/:number', (req, res) => {
-  const num = parseInt(req.params.number);
+  const num = parseInt(req.params.number, 10);
   if (Number.isNaN(num)) {
     res.status(400).json({ error: 'Parameter must be a number.' });
   }

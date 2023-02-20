@@ -10,14 +10,8 @@ function either(a, b) {
   return a || b;
 }
 
-// eslint-disable-next-line consistent-return
 function none(a, b) {
-  if (a || b) {
-    return false;
-  }
-  if (!a || !b) {
-    return true;
-  }
+  return !(a || b);
 }
 
 function one(a, b) {
@@ -25,25 +19,11 @@ function one(a, b) {
 }
 
 function truthiness(a) {
-  if (a) {
-    return true;
-  }
-  return false;
+  return !!a;
 }
 
-//   if (a) {
-//     return true;
-//   }
-//   if (!a) {
-//     return false;
-//   }
-// }
-
 function isEqual(a, b) {
-  if (a === b) {
-    return true;
-  }
-  return false;
+  return a === b;
 }
 
 function isGreaterThan(a, b) {

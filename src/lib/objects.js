@@ -1,7 +1,7 @@
 const createPerson = (name, age) => {
   return {
     name,
-    age
+    age,
   };
 };
 
@@ -33,18 +33,11 @@ const findByName = (name, people) => {
 };
 
 function findHondas(cars) {
-  // Use the filter() method to create a new array that only
-  // includes the cars that are manufactured by Honda
-  const hondas = cars.filter(car => car.manufacturer === 'Honda');
-
-  // Return the new array of Honda cars
-  return hondas;
+  return cars.filter(car => car.manufacturer === 'Honda');
 }
 const averageAge = people => {
-  const ages = people.map(person => person.age);
-  const sum = ages.reduce((total, age) => total + age, 0);
-  const averageAgeIs = sum / ages.length;
-  return averageAgeIs;
+  const sum = people.map(person => person.age).reduce((total, age) => total + age, 0);
+  return sum / people.length;
 };
 
 const createTalkingPerson = (name, age) => {
@@ -53,7 +46,7 @@ const createTalkingPerson = (name, age) => {
     age,
     introduce(to) {
       return `Hi ${to}, my name is ${name} and I am ${age}!`;
-    }
+    },
   };
 };
 
@@ -67,5 +60,5 @@ module.exports = {
   findByName,
   findHondas,
   averageAge,
-  createTalkingPerson
+  createTalkingPerson,
 };
